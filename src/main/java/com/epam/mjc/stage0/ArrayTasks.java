@@ -29,8 +29,8 @@ public class ArrayTasks {
      */
     public int[] generateNumbers(int length) {
         int[] nums = new int[length];
-        for (int i=0;i<=length; i++) {
-            nums[i] = i;
+        for (int i=0;i<=length-1; i++) {
+            nums[i] = i+1;
         }
         return nums;
 
@@ -66,7 +66,8 @@ public class ArrayTasks {
         int index = -1;
         for (int i=0;i<=(arr.length-1);i++) {
             if (arr[i] == number) {
-                index=i+1;
+                index=i;
+                break;
             }
         }
             return index;
@@ -105,15 +106,17 @@ public class ArrayTasks {
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
         int count = 0;
+        int index = 0;
         for (int i = 0;i<=arr.length-1;i++) {
             if (arr[i] > 0) {
                 count++;
             }
         }
         int[] posArr = new int[count];
-        for (int i = 0;i<=posArr.length-1;i++) {
+        for (int i = 0;i<=arr.length-1;i++) {
             if (arr[i] >0) {
-                posArr[i] = arr[i];
+                posArr[index] = arr[i];
+                index++;
             }
         }
         return posArr;
@@ -133,23 +136,25 @@ public class ArrayTasks {
     public int[][] sortRaggedArray(int[][] arr) {
         int numSwap;
         for (int i = 0;i<=arr.length-2;i++) {
-            int[] arrSwap = new int[arr.length];
-            arrSwap = arr[i];
-            for (int j =0;j<=arrSwap.length-2;) {
-                if (arrSwap[j]>arrSwap[j+1]) {
-                    numSwap = arrSwap[i];
-                    arrSwap[i] = arrSwap[i+1];
-                    arrSwap[i+1] = numSwap;
+            int[] arrSwap = arr[i];
+            for (int j = 0; j <= arrSwap.length - 2; j++) {
+                if (arrSwap[j] > arrSwap[j + 1]) {
+                    numSwap = arrSwap[j];
+                    arrSwap[j] = arrSwap[j + 1];
+                    arrSwap[j + 1] = numSwap;
                 }
-                arr[i] = arrSwap;
             }
-            if (arr[i].length>arr[i+1].length) {
-            arrSwap = arr[i];
-            for (int j =0;j<=arrSwap.length-1;)
-            arr[i] = arr[i+1];
-            arr[i+1] = arrSwap;
-    }
-}
+            arr[i] = arrSwap;
+        }
+        for (int i = 0;i<=arr.length-2;i++) {
+            int[] arrSwap = arr[i];
+            if (arr[i].length > arr[i + 1].length) {
+                arrSwap = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = arrSwap;
+            }
+        }
+
         return arr;
 
         }

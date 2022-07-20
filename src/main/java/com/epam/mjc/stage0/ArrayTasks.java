@@ -135,23 +135,33 @@ public class ArrayTasks {
      */
     public int[][] sortRaggedArray(int[][] arr) {
         int numSwap;
-        for (int i = 0;i<=arr.length-2;i++) {
+        boolean sorted = false;
+        for (int i = 0;i<=arr.length-1;i++) {
             int[] arrSwap = arr[i];
-            for (int j = 0; j <= arrSwap.length - 2; j++) {
-                if (arrSwap[j] > arrSwap[j + 1]) {
-                    numSwap = arrSwap[j];
-                    arrSwap[j] = arrSwap[j + 1];
-                    arrSwap[j + 1] = numSwap;
+            while (!sorted) {
+                sorted = true;
+                for (int j = 0; j <= arrSwap.length - 2; j++) {
+                    if (arrSwap[j] > arrSwap[j + 1]) {
+                        numSwap = arrSwap[j];
+                        arrSwap[j] = arrSwap[j + 1];
+                        arrSwap[j + 1] = numSwap;
+                        sorted = false;
+                    }
                 }
             }
             arr[i] = arrSwap;
         }
-        for (int i = 0;i<=arr.length-2;i++) {
-            int[] arrSwap = arr[i];
-            if (arr[i].length > arr[i + 1].length) {
-                arrSwap = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = arrSwap;
+        sorted = false;
+        while (!sorted) {
+            sorted = true;
+            for (int i = 0; i <= arr.length-2; i++) {
+                int[] arrSwap;
+                if (arr[i].length > arr[i + 1].length) {
+                    arrSwap = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = arrSwap;
+                    sorted = false;
+                }
             }
         }
 

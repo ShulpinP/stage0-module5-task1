@@ -63,16 +63,13 @@ public class ArrayTasks {
      * arr = [5, -3, -4],   number = 10    ->  -1
      */
     public int findIndexOfNumber(int[] arr, int number) {
-        int flag = 0;
+        int index = -1;
         for (int i=0;i<=(arr.length-1);i++) {
             if (arr[i] == number) {
-                flag++;
-                return i+1;
+                index=i+1;
             }
-            }
-        if (flag==0) {
-            return -1;
         }
+            return index;
     }
 
     /**
@@ -134,9 +131,9 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
-        int[] arrSwap = new int[];
         int numSwap;
         for (int i = 0;i<=arr.length-2;i++) {
+            int[] arrSwap = new int[arr.length];
             arrSwap = arr[i];
             for (int j =0;j<=arrSwap.length-2;) {
                 if (arrSwap[j]>arrSwap[j+1]) {
@@ -153,6 +150,7 @@ public class ArrayTasks {
             arr[i+1] = arrSwap;
     }
 }
+        return arr;
 
         }
 }
